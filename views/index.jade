@@ -1,0 +1,21 @@
+extends layout
+
+block content
+	div#main.main(ng-controller='MyController')
+		div.title-box
+			h1= title
+		div.wrapper
+			ul#postlist.postlist
+				li.spinner(ng-show='loading') Loading...
+				li(ng-repeat='item in tweets').post.cf
+					img(ng-src='{{item.user.profile_image_url}}', alt='Photo of {{item.user.name}}')
+					div.info
+						h1 {{item.user.name}}
+						p {{item.text}}
+						p 
+							span(style='display:block;text-align:left;font-style:italic;font-size:10px;') {{item.user.created_at}}
+			div.tooltip
+				div.tooltipcontent
+					div.tooltiparrow
+					div.tooltipinner
+						| Loading...
