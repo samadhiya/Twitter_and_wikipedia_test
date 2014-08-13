@@ -33,6 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/components', express.static(__dirname + '/bower_components'));
 
+
 app.use('/', routes);
 app.use('/api/twitter', function(req, res) {
     twit.search('node.js', function(data) {
@@ -54,7 +55,7 @@ app.use('/api/wiki/:query', function(req, res) {
         if(err){
             res.json({'content': 'Content not found.'});
         }
-        if(htmlWikiText == null || (htmlWikiText != null && htmlWikiText.trim() == "")) {
+        if(htmlWikiText === null || (htmlWikiText !== null && htmlWikiText.trim() === "")) {
             res.json({'content': 'Content not found.'});   
         }
         res.json({'content': htmlWikiText});
@@ -73,7 +74,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
+    app.use(function(err, req, res) {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
@@ -84,7 +85,8 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+//TODO: Fis this mess
+app.use(function(err, req, res) {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,

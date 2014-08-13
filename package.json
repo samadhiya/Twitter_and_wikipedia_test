@@ -15,5 +15,10 @@
     "static-favicon": "~1.0.0",
     "twitter": "^0.2.9",
     "wikipedia-js": "0.0.6"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-watch": "*"
   }
 }
